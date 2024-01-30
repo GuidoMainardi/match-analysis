@@ -1,3 +1,4 @@
+import pandas as pd
 from pathlib import Path
 from dataclasses import dataclass
 
@@ -16,3 +17,23 @@ class PrepareBaseModelConfig:
     base_model_path: Path
     updated_base_model_path: Path
     params_n_jobs: int
+
+
+@dataclass(frozen=True)
+class PrepareDataConfig:
+    root_dir: Path
+    raw_data_path: Path
+    prepared_data_path: Path
+    feature_columns: list
+    target_column: str
+
+
+@dataclass(frozen=True)
+class TrainingConfig:
+    root_dir: Path
+    trained_model_path: Path
+    updated_base_model_path: Path
+    training_data: pd.DataFrame
+    feature_columns: list
+    target_column: str
+    n_jobs: int
