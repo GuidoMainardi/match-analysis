@@ -16,3 +16,12 @@ class PrepareBaseModelConfig:
     base_model_path: Path
     updated_base_model_path: Path
     params_n_jobs: int
+
+
+@dataclass(frozen=True)
+class PrepareDataConfig:
+    root_dir: Path
+    raw_data_path: Path
+    prepared_data_path: Path
+    feature_columns: list
+    target_column: str
