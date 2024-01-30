@@ -34,6 +34,7 @@ except Exception as e:
 
 STAGE_NAME = 'Prepare Data'
 try:
+    logger.info(f'*'*20)
     logger.info(f'>>>>>> stage {STAGE_NAME} started <<<<<<')
     obj = PrepareDataPieline()
     obj.main()
@@ -46,6 +47,7 @@ except Exception as e:
 
 STAGE_NAME = 'Model Training'
 try:
+    logger.info(f'*'*20)
     logger.info(f'>>>>>> stage {STAGE_NAME} started <<<<<<')
     obj = ModelTrainingPipeline()
     obj.main()
