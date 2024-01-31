@@ -178,3 +178,6 @@ cython_debug/
 
 artifacts/*
 logs/*
+
+scores.json
+secrets.yaml

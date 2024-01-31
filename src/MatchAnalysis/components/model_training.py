@@ -1,4 +1,5 @@
 import pickle
+import pandas as pd
 from pathlib import Path
 from sklearn.model_selection import train_test_split
 
@@ -14,13 +15,16 @@ class Training:
             file
         )
 
+    def get_data(self):
+        self.training_data = pd.read_csv(self.config.training_data)
+        
     def train_valid_data_split(self):
 
-        self.X = self.config.training_data[self.config.feature_columns]
-        self.y = self.config.training_data[self.config.target_column]
+        self.X = self.training_data[self.config.feature_columns]
+        self.y = self.training_data[self.config.target_column]
         
         self.train_X, self.valid_X, self.train_y, self.valid_y = train_test_split(
-            self.X, self.y, test_size=0.2, random_state=42
+            self.X, self.y, test_size=0.2, random_state=self.config.random_state
         )
 
     def train(self):

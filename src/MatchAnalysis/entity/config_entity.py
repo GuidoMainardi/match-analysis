@@ -1,4 +1,3 @@
-import pandas as pd
 from pathlib import Path
 from dataclasses import dataclass
 
@@ -33,7 +32,21 @@ class TrainingConfig:
     root_dir: Path
     trained_model_path: Path
     updated_base_model_path: Path
-    training_data: pd.DataFrame
+    training_data: Path
     feature_columns: list
     target_column: str
     n_jobs: int
+    random_state: int
+
+
+@dataclass(frozen=True)
+class EvaluationConfig:
+    model_path: Path
+    training_data: Path
+    all_params: dict
+    mlflow_uri: str
+    random_state: int
+    feature_columns: list
+    target_column: str
+
+    

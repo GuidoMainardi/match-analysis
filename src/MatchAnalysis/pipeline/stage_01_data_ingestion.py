@@ -22,6 +22,7 @@ if __name__ == '__main__':
         obj = DatatIngestionTrainingPieline()
         obj.main()
         logger.info(f'>>>>>> stage {STAGE_NAME} completed <<<<<<')
+        logger.info('\nx====================x\n')
     except Exception as e:
         logger.error(e)
         raise e

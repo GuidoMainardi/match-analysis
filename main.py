@@ -3,6 +3,7 @@ from src.MatchAnalysis.pipeline.stage_01_data_ingestion import DatatIngestionTra
 from src.MatchAnalysis.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
 from src.MatchAnalysis.pipeline.stage_03_prepare_data import PrepareDataPieline
 from src.MatchAnalysis.pipeline.stage_04_model_training import ModelTrainingPipeline
+from src.MatchAnalysis.pipeline.stage_05_model_evaluation import ModelEvaluationPipeline
 
 STAGE_NAME = 'Data Ingestion'
 try:
@@ -10,6 +11,7 @@ try:
     obj = DatatIngestionTrainingPieline()
     obj.main()
     logger.info(f'>>>>>> stage {STAGE_NAME} completed <<<<<<')
+    logger.info('\nx====================x\n')
 except Exception as e:
     logger.error(e)
     raise e
@@ -25,6 +27,7 @@ try:
     obj = PrepareBaseModelTrainingPipeline()
     obj.main()
     logger.info(f'>>>>>> stage {STAGE_NAME} completed <<<<<<')
+    logger.info('\nx====================x\n')
 except Exception as e:
     logger.error(e)
     raise e
@@ -39,6 +42,7 @@ try:
     obj = PrepareDataPieline()
     obj.main()
     logger.info(f'>>>>>> stage {STAGE_NAME} completed <<<<<<')
+    logger.info('\nx====================x\n')
 except Exception as e:
     logger.error(e)
     raise e
@@ -52,6 +56,20 @@ try:
     obj = ModelTrainingPipeline()
     obj.main()
     logger.info(f'>>>>>> stage {STAGE_NAME} completed <<<<<<')
+    logger.info('\nx====================x\n')
+except Exception as e:
+    logger.error(e)
+    raise e
+
+
+STAGE_NAME = 'Model Evaluation'
+try:
+    logger.info(f'*'*20)
+    logger.info(f'>>>>>> stage {STAGE_NAME} started <<<<<<')
+    obj = ModelEvaluationPipeline()
+    obj.main()
+    logger.info(f'>>>>>> stage {STAGE_NAME} completed <<<<<<')
+    logger.info('\nx====================x\n')
 except Exception as e:
     logger.error(e)
     raise e
