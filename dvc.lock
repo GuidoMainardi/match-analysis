@@ -106,8 +106,8 @@ stages:
       size: 1086
     - path: src/MatchAnalysis/pipeline/stage_05_model_evaluation.py
       hash: md5
-      md5: 9d362172c613fce8e9451669fa210e25
-      size: 918
+      md5: 634931f4f41edf0cd038def87232cfe3
+      size: 917
     params:
       params.yaml:
         N_JOBS: 2

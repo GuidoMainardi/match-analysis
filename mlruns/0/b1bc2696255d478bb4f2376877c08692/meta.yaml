@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/guido/Documents/match-analysis/mlruns/0/b1bc2696255d478bb4f2376877c08692/artifacts
+end_time: 1706814240153
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b1bc2696255d478bb4f2376877c08692
+run_name: calm-cub-274
+run_uuid: b1bc2696255d478bb4f2376877c08692
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1706814237449
+status: 4
+tags: []
+user_id: guido

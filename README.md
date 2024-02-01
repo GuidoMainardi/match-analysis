@@ -48,3 +48,19 @@ $ pip install poetry
 ```bash
 $ poetry install
 ```
+
+
+
+## Running
+
+1. to run the code execute the following command
+```bash
+$ dvc repro
+```
+
+
+## DVC cmd
+
+1. dvc init
+2. dvc repro
+3. dvc dag
