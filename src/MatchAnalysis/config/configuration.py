@@ -1,5 +1,3 @@
-import pandas as pd
-
 from src.MatchAnalysis.constants import *
 from src.MatchAnalysis.utils.common import read_yaml, create_directories
 
@@ -7,6 +5,7 @@ from src.MatchAnalysis.entity.config_entity import DataIngestionConfig
 from src.MatchAnalysis.entity.config_entity import PrepareBaseModelConfig
 from src.MatchAnalysis.entity.config_entity import PrepareDataConfig
 from src.MatchAnalysis.entity.config_entity import TrainingConfig
+from src.MatchAnalysis.entity.config_entity import EvaluationConfig
 
 class ConfigurationManager:
     def __init__(
@@ -83,10 +82,23 @@ class ConfigurationManager:
             root_dir = Path(training.root_dir),
             trained_model_path = Path(training.trained_model_path),
             updated_base_model_path = Path(prepare_base_model.updated_base_model_path),
-            training_data = pd.read_csv(training_data),
+            training_data = Path(training_data),
             feature_columns = self.config.prepare_data.feature_columns,
             target_column = self.config.prepare_data.target_column,
-            n_jobs = self.params.N_JOBS
+            n_jobs = self.params.N_JOBS,
+            random_state = self.params.VAL_SPLIT_RANDOM_STATE
         )
         
         return training_config
+    
+    def get_evaluation_config(self) -> EvaluationConfig:
+        evaluation_config = EvaluationConfig(
+            model_path = self.config.training.trained_model_path,
+            training_data = self.config.prepare_data.prepared_data_path,
+            all_params = self.params,
+            mlflow_uri = "https://dagshub.com/GuidoMainardi/match-analysis.mlflow",
+            random_state = self.params.VAL_SPLIT_RANDOM_STATE,
+            feature_columns = self.config.prepare_data.feature_columns,
+            target_column = self.config.prepare_data.target_column
+        )
+        return evaluation_config

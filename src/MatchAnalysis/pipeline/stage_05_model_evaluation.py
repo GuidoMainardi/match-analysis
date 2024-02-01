@@ -1,27 +1,26 @@
 from src.MatchAnalysis import logger
-from src.MatchAnalysis.components.prepare_data import PrepareData
+from src.MatchAnalysis.components.model_evaluation import Evaluation
 from src.MatchAnalysis.config.configuration import ConfigurationManager
 
-STAGE_NAME = 'Prepare Data'
+STAGE_NAME = 'Model Evaluation'
 
-class PrepareDataPieline:
+class ModelEvaluationPipeline:
     def __init__(self) -> None:
         pass
 
     def main(self):
         config = ConfigurationManager()
-        prepare_data_config = config.get_prepare_data_config()
-        prepare_data = PrepareData(prepare_data_config)
-        prepare_data.get_data()
-        prepare_data.get_scaler()
-        prepare_data.update_data()
-
+        eval_config = config.get_evaluation_config()
+        evaluation = Evaluation(eval_config)
+        evaluation.get_data()
+        evaluation.evaluate()
+        evaluation.log_into_mlflow()
 
 if __name__ == '__main__':
     try:
         logger.info(f'*'*20)
         logger.info(f'>>>>>> stage {STAGE_NAME} started <<<<<<')
-        obj = PrepareDataPieline()
+        obj = ModelEvaluationPipeline()
         obj.main()
         logger.info(f'>>>>>> stage {STAGE_NAME} completed <<<<<<')
         logger.info('\nx====================x\n')

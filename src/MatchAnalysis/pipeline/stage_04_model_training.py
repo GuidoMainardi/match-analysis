@@ -12,16 +12,19 @@ class ModelTrainingPipeline:
         config = ConfigurationManager()
         training_config = config.get_training_config()
         training = Training(training_config)
+        training.get_data()
         training.get_base_model()
         training.train_valid_data_split()
         training.train()
 
 if __name__ == '__main__':
     try:
+        logger.info(f'*'*20)
         logger.info(f'>>>>>> stage {STAGE_NAME} started <<<<<<')
         obj = ModelTrainingPipeline()
         obj.main()
         logger.info(f'>>>>>> stage {STAGE_NAME} completed <<<<<<')
+        logger.info('\nx====================x\n')
     except Exception as e:
         logger.error(e)
         raise e
