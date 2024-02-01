@@ -1,0 +1,119 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/MatchAnalysis/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: dac934b7763812654f547f8a3a60335e
+      size: 1086
+    - path: src/MatchAnalysis/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: 8dbb376c3a4a40a1b9e0b92a6a216be9
+      size: 917
+    outs:
+    - path: artifacts/data_ingestion/MatchAnalysis.csv
+      hash: md5
+      md5: b38616a847d86241ec775fbb0982c3b2
+      size: 4928907
+  prepare_base_model:
+    cmd: python src/MatchAnalysis/pipeline/stage_02_prepare_base_model.py
+    deps:
+    - path: config/config.yaml
+      hash: md5
+      md5: dac934b7763812654f547f8a3a60335e
+      size: 1086
+    - path: src/MatchAnalysis/pipeline/stage_02_prepare_base_model.py
+      hash: md5
+      md5: e3df93fff360bf59f72135cef41e2daa
+      size: 990
+    params:
+      params.yaml:
+        N_JOBS: 2
+    outs:
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: 98c97d88922b186781238fad7d2e79bc.dir
+      size: 294
+      nfiles: 2
+  prepare_data:
+    cmd: python src/MatchAnalysis/pipeline/stage_03_prepare_data.py
+    deps:
+    - path: artifacts/data_ingestion/MatchAnalysis.csv
+      hash: md5
+      md5: b38616a847d86241ec775fbb0982c3b2
+      size: 4928907
+    - path: config/config.yaml
+      hash: md5
+      md5: dac934b7763812654f547f8a3a60335e
+      size: 1086
+    - path: src/MatchAnalysis/pipeline/stage_03_prepare_data.py
+      hash: md5
+      md5: 9b63c6aaf52efa7cc1bda96ef9bfbaac
+      size: 926
+    params:
+      params.yaml:
+        N_JOBS: 2
+        VAL_SPLIT_RANDOM_STATE: 10
+    outs:
+    - path: artifacts/prepare_data/prepared_data.csv
+      hash: md5
+      md5: f60416f0e2c5b371a4f854fc32eee4ce
+      size: 10415250
+  train_model:
+    cmd: python src/MatchAnalysis/pipeline/stage_04_model_training.py
+    deps:
+    - path: artifacts/prepare_base_model
+      hash: md5
+      md5: 98c97d88922b186781238fad7d2e79bc.dir
+      size: 294
+      nfiles: 2
+    - path: artifacts/prepare_data/prepared_data.csv
+      hash: md5
+      md5: f60416f0e2c5b371a4f854fc32eee4ce
+      size: 10415250
+    - path: config/config.yaml
+      hash: md5
+      md5: dac934b7763812654f547f8a3a60335e
+      size: 1086
+    - path: src/MatchAnalysis/pipeline/stage_04_model_training.py
+      hash: md5
+      md5: b69091537a47e5e3a62132d317fe5af3
+      size: 941
+    params:
+      params.yaml:
+        N_JOBS: 2
+        VAL_SPLIT_RANDOM_STATE: 10
+    outs:
+    - path: artifacts/training/model.pkl
+      hash: md5
+      md5: 01785ed19626c42a6752758c6f8fbc00
+      size: 1033
+  evaluate_model:
+    cmd: python src/MatchAnalysis/pipeline/stage_05_model_evaluation.py
+    deps:
+    - path: artifacts/prepare_data/prepared_data.csv
+      hash: md5
+      md5: f60416f0e2c5b371a4f854fc32eee4ce
+      size: 10415250
+    - path: artifacts/training/model.pkl
+      hash: md5
+      md5: 01785ed19626c42a6752758c6f8fbc00
+      size: 1033
+    - path: config/config.yaml
+      hash: md5
+      md5: dac934b7763812654f547f8a3a60335e
+      size: 1086
+    - path: src/MatchAnalysis/pipeline/stage_05_model_evaluation.py
+      hash: md5
+      md5: 9d362172c613fce8e9451669fa210e25
+      size: 918
+    params:
+      params.yaml:
+        N_JOBS: 2
+        VAL_SPLIT_RANDOM_STATE: 10
+    outs:
+    - path: scores.json
+      hash: md5
+      md5: ca6716ecb139abf57e7120f4a7b87829
+      size: 39

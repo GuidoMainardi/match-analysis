@@ -1,10 +1,10 @@
 
 import pickle
 import mlflow
-import sklearn
 import pandas as pd
 from pathlib import Path
 from urllib.parse import urlparse
+from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
 
 from src.MatchAnalysis.utils.common import save_json
@@ -27,7 +27,7 @@ class Evaluation:
         )
 
     @staticmethod
-    def load_model(path: Path) -> sklearn.linear_model.LogisticRegression:
+    def load_model(path: Path) -> LogisticRegression:
         return pickle.load(open(path, 'rb'))
     
     def evaluate(self):
