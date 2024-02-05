@@ -6,18 +6,18 @@ app = FastAPI()
 
 
 @app.get("/")
-async def root():
+def root():
     return {"message": "Match analysis API"}
 
 
 @app.post("/train")
-async def train():
+def train():
     os.system('dvc repro')
     return {"message": "Training done successfully"}
 
 
 @app.get("/predict")
-async def predict(
+def predict(
     blueGold: int, blueMinionsKilled: int,
     blueJungleMinionsKilled: int, blueAvgLevel: float,
     redGold: int, redMinionsKilled: int,

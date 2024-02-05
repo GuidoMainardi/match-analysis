@@ -58,8 +58,8 @@ stages:
     outs:
     - path: artifacts/prepare_data/prepared_data.csv
       hash: md5
-      md5: f60416f0e2c5b371a4f854fc32eee4ce
-      size: 10415250
+      md5: cf64a706e73501f9260bb5744cdf0886
+      size: 10317948
   train_model:
     cmd: python src/MatchAnalysis/pipeline/stage_04_model_training.py
     deps:
@@ -70,8 +70,8 @@ stages:
       nfiles: 2
     - path: artifacts/prepare_data/prepared_data.csv
       hash: md5
-      md5: f60416f0e2c5b371a4f854fc32eee4ce
-      size: 10415250
+      md5: cf64a706e73501f9260bb5744cdf0886
+      size: 10317948
     - path: config/config.yaml
       hash: md5
       md5: fa51a6b3ac7bb66c5c2f4d867f74fb62
@@ -94,8 +94,8 @@ stages:
     deps:
     - path: artifacts/prepare_data/prepared_data.csv
       hash: md5
-      md5: f60416f0e2c5b371a4f854fc32eee4ce
-      size: 10415250
+      md5: cf64a706e73501f9260bb5744cdf0886
+      size: 10317948
     - path: artifacts/training/model.pkl
       hash: md5
       md5: 01785ed19626c42a6752758c6f8fbc00
