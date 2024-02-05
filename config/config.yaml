@@ -17,6 +17,7 @@ prepare_base_model:
 prepare_data:
   root_dir: artifacts/prepare_data
   prepared_data_path: artifacts/prepare_data/prepared_data.csv
+  base_scaler_path: artifacts/prepare_data/scaler.pkl
   feature_columns: [
       blueGold, blueMinionsKilled, blueJungleMinionsKilled, blueAvgLevel, 
       redGold,  redMinionsKilled,  redJungleMinionsKilled,  redAvgLevel,

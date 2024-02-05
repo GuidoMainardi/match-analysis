@@ -63,8 +63,10 @@ class ConfigurationManager:
             root_dir = Path(prepare_data.root_dir),
             raw_data_path = Path(raw_data),
             prepared_data_path = Path(prepare_data.prepared_data_path),
+            base_scaler_path = Path(prepare_data.base_scaler_path),
             feature_columns = prepare_data.feature_columns,
             target_column = prepare_data.target_column
+            
         )
 
         return prepare_data_config
