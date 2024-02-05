@@ -15,13 +15,13 @@ class PrepareData:
             [*self.config.feature_columns, 
               self.config.target_column]
         ]
+        self.scaler.fit(self.data[self.config.feature_columns])
 
-        self.scaler.fit(clean_data)
-
-        return pd.DataFrame(
-            self.scaler.transform(clean_data),
-            columns = clean_data.columns
+        clean_data[self.config.feature_columns] = self.scaler.transform(
+            clean_data[self.config.feature_columns]
         )
+
+        return clean_data
 
         
     def get_data(self):
