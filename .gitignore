@@ -178,6 +178,7 @@ cython_debug/
 
 artifacts/*
 logs/*
+mlruns/*
 
 scores.json
 secrets.yaml

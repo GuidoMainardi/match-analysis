@@ -1,0 +1,62 @@
+stages: 
+  data_ingestion:
+    cmd: python src/MatchAnalysis/pipeline/stage_01_data_ingestion.py
+    deps:
+      - src/MatchAnalysis/pipeline/stage_01_data_ingestion.py
+      - config/config.yaml
+    outs:
+      - artifacts/data_ingestion/MatchAnalysis.csv
+
+
+  prepare_base_model:
+    cmd: python src/MatchAnalysis/pipeline/stage_02_prepare_base_model.py
+    deps:
+      - src/MatchAnalysis/pipeline/stage_02_prepare_base_model.py
+      - config/config.yaml
+    params:
+      - N_JOBS
+    outs:
+      - artifacts/prepare_base_model
+
+
+  prepare_data:
+    cmd: python src/MatchAnalysis/pipeline/stage_03_prepare_data.py
+    deps:
+      - src/MatchAnalysis/pipeline/stage_03_prepare_data.py
+      - config/config.yaml
+      - artifacts/data_ingestion/MatchAnalysis.csv
+    params:
+      - N_JOBS
+      - VAL_SPLIT_RANDOM_STATE
+    outs:
+      - artifacts/prepare_data/prepared_data.csv
+
+
+  train_model:
+    cmd: python src/MatchAnalysis/pipeline/stage_04_model_training.py
+    deps:
+      - src/MatchAnalysis/pipeline/stage_04_model_training.py
+      - config/config.yaml
+      - artifacts/prepare_data/prepared_data.csv
+      - artifacts/prepare_base_model
+    params:
+      - N_JOBS
+      - VAL_SPLIT_RANDOM_STATE
+    outs:
+      - artifacts/training/model.pkl
+
+
+  evaluate_model:
+    cmd: python src/MatchAnalysis/pipeline/stage_05_model_evaluation.py
+    deps:
+      - src/MatchAnalysis/pipeline/stage_05_model_evaluation.py
+      - config/config.yaml
+      - artifacts/prepare_data/prepared_data.csv
+      - artifacts/training/model.pkl
+    params:
+      - N_JOBS
+      - VAL_SPLIT_RANDOM_STATE
+    metrics:
+    - scores.json:
+        cache: false
+
