@@ -85,6 +85,7 @@ class ConfigurationManager:
             trained_model_path = Path(training.trained_model_path),
             updated_base_model_path = Path(prepare_base_model.updated_base_model_path),
             training_data = Path(training_data),
+            trained_model_container = Path(training.trained_model_container),
             feature_columns = self.config.prepare_data.feature_columns,
             target_column = self.config.prepare_data.target_column,
             n_jobs = self.params.N_JOBS,

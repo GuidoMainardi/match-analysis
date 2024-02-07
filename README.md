@@ -64,3 +64,10 @@ $ dvc repro
 1. dvc init
 2. dvc repro
 3. dvc dag
+
+## env vars:
+
+MLFLOW_TRACKING_URI: 
+MLFLOW_TRACKING_USERNAME: 
+MLFLOW_TRACKING_PASSWORD: 
+PYTHONPATH

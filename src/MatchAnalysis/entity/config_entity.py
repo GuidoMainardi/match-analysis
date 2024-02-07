@@ -35,6 +35,7 @@ class TrainingConfig:
     trained_model_path: Path
     updated_base_model_path: Path
     training_data: Path
+    trained_model_container: Path
     feature_columns: list
     target_column: str
     n_jobs: int

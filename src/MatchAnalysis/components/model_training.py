@@ -36,6 +36,11 @@ class Training:
             self.model
         )
 
+        self.save_model(
+            self.config.trained_model_container,
+            self.model
+        )
+
     @staticmethod
     def save_model(path: Path, model):
         with open(path, 'wb') as f:
