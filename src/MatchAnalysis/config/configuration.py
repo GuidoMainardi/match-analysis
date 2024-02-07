@@ -64,6 +64,7 @@ class ConfigurationManager:
             raw_data_path = Path(raw_data),
             prepared_data_path = Path(prepare_data.prepared_data_path),
             base_scaler_path = Path(prepare_data.base_scaler_path),
+            base_scaler_container = Path(prepare_data.base_scaler_container),
             feature_columns = prepare_data.feature_columns,
             target_column = prepare_data.target_column
             

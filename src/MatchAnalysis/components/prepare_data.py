@@ -45,6 +45,11 @@ class PrepareData:
             scaler=self.scaler
         )
 
+        self.save_scaler(
+            path=self.config.base_scaler_container,
+            scaler=self.scaler
+        )
+
     @staticmethod
     def save_data(path: Path, data):
         data.to_csv(path, index=False)

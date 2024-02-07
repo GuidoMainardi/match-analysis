@@ -25,6 +25,7 @@ prepare_data:
       redChampKills, redHeraldKills, redDragonKills, redTowersDestroyed
   ]
   target_column: blue_win
+  base_scaler_container: model/scaler.pkl
 
 training:
   root_dir: artifacts/training
