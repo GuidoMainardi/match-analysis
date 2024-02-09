@@ -15,7 +15,7 @@ class PredictionPipeline:
         model = pickle.load(open(os.path.join('model', 'model.pkl'), 'rb'))
 
         #load scaler
-        scaler = pickle.load(open(os.path.join('artifacts', 'prepare_data', 'scaler.pkl'), 'rb'))
+        scaler = pickle.load(open(os.path.join('model', 'scaler.pkl'), 'rb'))
 
         print(sample)
         # load data

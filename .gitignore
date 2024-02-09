@@ -176,9 +176,9 @@ cython_debug/
 .history/
 
 
-artifacts/*
-logs/*
-mlruns/*
+artifacts/
+logs/
+mlruns/
 
 scores.json
 secrets.yaml
